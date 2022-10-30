@@ -1,0 +1,36 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'cadastro.css' %}">
+    <title>Cadastro</title>
+</head>
+<body>
+    <div class="container">
+        <div class="login-info">
+            {% for message in messages %}
+                {% if message %}
+                <script>
+                    alert('{{message}}')
+                </script>
+                {% endif %}
+            {% endfor %}
+            <form method='POST' action="{%url 'cadastro'%}">{%csrf_token%}
+                <div class="container-input">
+                    <h1>Cadastro</h1>
+                    <p>Usuário</p>
+                    <input name="email" type="text" placeholder="E-mail">
+                    <p>Senha</p>
+                    <input name="senha" type="password" placeholder="Senha">
+                    <p>Confirmação de senha</p>
+                    <input name="senha_verificacao" type="password" placeholder="Senha">
+                    <button type="submit">Cadastrar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

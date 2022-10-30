@@ -1,0 +1,50 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <title>Index</title>
+</head>
+<body>
+    <div class="container" >
+        <div class="header">
+            <h1>To Do List</h1>
+            <div class="header-content">
+                <h2>{{user}}</h2>
+                <a href="{% url 'logout'%}">Sair</a>
+            </div>
+        </div>
+
+        <form method="GET" action="{% url 'buscar'%}">
+            <p>Pesquisar</p>
+            <input type="text" name="termo">
+            <button class="btn-buscar" type="submit">Buscar</button>
+        </form>
+        <a class="button" href="{%url 'addTask'%}">Adicionar Tarefa</a>
+        <div class="form">
+            <table>
+                <tr>
+                  <th>Tarefa</th>
+                  <th>Descrição</th>
+                  <th>Data</th>
+                  <th>Status</th>
+                </tr>
+                {%for task in tasks%}
+                <tr>
+                    <td>{{task.title}}</td>
+                    <td>{{task.descriptions}}</td>
+                    <td>{{task.date}}</td>
+                    <td>{{task.status}}</td>
+                    <td class="finalizar"><a class="finalizar" href="{% url 'finalizar' task.id%}">Finalizar</a></td>
+                    <td class="editar"><a class="editar" href="{% url 'editar' task.id%}">Editar</a></td>
+                    <td class="excluir"><a class="excluir" href="{% url 'deletar' task.id%}">Excluir</a></td>
+                </tr>
+                {%endfor%}
+            </table>
+        </div>
+    </div>
+</body>
+</html>

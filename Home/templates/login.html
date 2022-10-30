@@ -1,0 +1,34 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'login.css' %}">
+    <title>Login</title>
+</head>
+<body>
+    <div class="container">
+        <div class="login-info">
+            {% for message in messages %}
+                {% if message %}
+                <script>
+                    alert('{{message}}')
+                </script>
+                {% endif %}
+            {% endfor %}
+            <form method='POST' action="{%url 'logar'%}">{%csrf_token%}
+                <div class="container-input">
+                    <h1>Login</h1>
+                    <p>Usuário</p>
+                    <input name="email" type="text" placeholder="E-mail">
+                    <p>Senha</p>
+                    <input name="senha" type="password" placeholder="Senha">
+                    <button type="submit">Entrar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
